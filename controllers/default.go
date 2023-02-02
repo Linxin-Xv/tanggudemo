@@ -52,12 +52,13 @@ func (c *MainController) Get() {
 	c.TplName = "index.html"
 }
 
-func (c *MainController) Post() {
+func (c *MainController) HandleRegister() {
+	orm.Debug = true
 	//1.拿到数据
 	userName := c.GetString("userName") //因为是从前端拿数据，这个名称需要跟前端中的名称保持一致
-	password := c.GetString("password") //因为是从前端拿数据，这个名称需要跟前端中的名称保持一致
+	pwd := c.GetString("pwd")           //因为是从前端拿数据，这个名称需要跟前端中的名称保持一致
 	//2.对数据进行校验
-	if userName == "" || password == "" {
+	if userName == "" || pwd == "" {
 		println("数据不能为空")
 		c.Redirect("/register", 302) //重定向函数，如果发生错误页面重新回到/register，并返回错误码302
 		return
@@ -66,7 +67,7 @@ func (c *MainController) Post() {
 	o := orm.NewOrm()
 	user := models.User{}
 	user.Name = userName
-	user.Password = password
+	user.Password = pwd
 	_, err := o.Insert(&user)
 	if err != nil {
 		println("插入数据库失败")
@@ -76,7 +77,26 @@ func (c *MainController) Post() {
 	//4.返回登陆界面
 	c.TplName = "login.html"  //指定视图文件，同时可以给这个视图传递一些数据如在c.Data["errmsg"]，优点就是能够传递数据
 	c.Redirect("/login", 302) //跳转，不能传递数据。优点是速度快
+	////1.拿到数据
+	//userName := c.GetString("userName") //因为是从前端拿数据，这个名称需要跟前端中的名称保持一致
+	//pwd := c.GetString("pwd")           //因为是从前端拿数据，这个名称需要跟前端中的名称保持一致
+	//println(userName)
+	//println(pwd)
+	//o := orm.NewOrm()
+	//user := models.User{}
+	//user.Name = userName
+	//user.Password = pwd
+	//_, err := o.Insert(&user)
+	//if err != nil {
+	//	println("获取数据失败，插入数据库失败")
+	//	c.Redirect("/register", 302)
+	//	return
+	//}
+	////4.返回登陆界面
+	//c.TplName = "login.html"  //指定视图文件，同时可以给这个视图传递一些数据如在c.Data["errmsg"]，优点就是能够传递数据
+	//c.Redirect("/login", 302) //跳转，不能传递数据。优点是速度快
 }
+
 func (c *MainController) ShowRegister() {
 	c.TplName = "register.html"
 }

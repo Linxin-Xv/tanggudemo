@@ -42,7 +42,7 @@
                     <h4>订阅我们</h4>
                     <!--newsletter-->
                     <div class="newsletter">
-                        <form action="#" method="post">
+                        <form action="/email" method="post">
                             <input type="email" name="email" size="30" required="" placeholder="请填写邮箱地址" />
                             <input type="submit" value="订阅" />
                         </form>
@@ -66,9 +66,9 @@
                     <h4>登录账户</h4>
                     <!--newsletter-->
                     <div class="login-main wthree">
-                        <form action="#" method="post">
-                            <input type="email" placeholder="Email" required="" name="Email">
-                            <input type="password" placeholder="Password" name="Password">
+                        <form action="/login" method="post">
+                            <input type="text" placeholder="Name" name="userName">
+                            <input type="password" placeholder="Password" name="pwd">
                             <input type="submit" value="登录">
                         </form>
                     </div>
@@ -90,12 +90,12 @@
                     <h4>现在注册</h4>
                     <!--newsletter-->
                     <div class="login-main wthree">
-                        <form action="#" method="post">
-                            <input type="text" placeholder="姓名" name="Name">
-                            <input type="email" placeholder="Email" required="" name="Email">
-                            <input type="password" placeholder="密码" name="Password">
-                            <input type="password" placeholder="确认密码" name="Password">
-                            <input type="text" placeholder="手机号" name="Number">
+                        <form action="/register" method="post">
+                            <input type="text" placeholder="姓名" name="userName">
+                            <input type="email" placeholder="Email" required="" name="email">
+                            <input type="password" placeholder="密码" name="pwd">
+                            <input type="password" placeholder="确认密码" name="pwd">
+                            <input type="text" placeholder="手机号" name="mobile">
                             <input type="submit" value="立即注册">
                         </form>
                     </div>
